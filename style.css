@@ -1,52 +1,52 @@
 /* ═══════════════════════════════════════════════════════
    番茄鐘地下城 — style.css
-   Anime Dark Fantasy — Deep Crimson & Candlelight
+   Warm Candlelit Dungeon — 燭光微透的溫暖地下城
 ═══════════════════════════════════════════════════════ */
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* ── Deep crimson-black palette ── */
-  --c-bg:      #0a0303;
-  --c-surf:    #130606;
-  --c-card:    #1a0808;
-  --c-card-h:  #230c0c;
-  --c-overlay: rgba(8, 2, 2, 0.93);
+  /* ── 溫暖燭光色調 ── */
+  --c-bg:      #100904;
+  --c-surf:    #1a1006;
+  --c-card:    #211409;
+  --c-card-h:  #2c1c0d;
+  --c-overlay: rgba(14, 9, 3, 0.92);
 
-  /* ── Borders: crimson-amber ── */
-  --c-brd:     rgba(160, 55, 30, 0.28);
-  --c-brd-h:   rgba(210, 85, 50, 0.55);
-  --c-brd-glow:rgba(235, 105, 60, 0.70);
+  /* ── 邊框：琥珀暖光 ── */
+  --c-brd:     rgba(200, 130, 50, 0.22);
+  --c-brd-h:   rgba(235, 160, 70, 0.45);
+  --c-brd-glow:rgba(245, 170, 80, 0.60);
 
-  /* ── Primary accent: lantern orange ── */
-  --c-amber:   #e8783a;
-  --c-amber-lt:#f5a060;
-  --c-amber-dk:#a04820;
+  /* ── 主色：燈籠橙 ── */
+  --c-amber:   #e8883a;
+  --c-amber-lt:#f8aa5c;
+  --c-amber-dk:#b06020;
 
-  /* ── Secondary: blood red ── */
-  --c-red:     #8b1818;
-  --c-red-lt:  #cc2828;
+  /* ── 次色：血紅 ── */
+  --c-red:     #9c2a1a;
+  --c-red-lt:  #d44030;
 
-  /* ── Utility ── */
-  --c-orange:  #c85a20;
-  --c-sage:    #4a7850;
-  --c-sage-lt: #62a068;
-  --c-stone:   #5a3838;
-  --c-blue:    #384e78;
-  --c-blue-lt: #4888b8;
+  /* ── 輔助色 ── */
+  --c-orange:  #d46828;
+  --c-sage:    #4e8858;
+  --c-sage-lt: #68b070;
+  --c-stone:   #6a5848;
+  --c-blue:    #3a6888;
+  --c-blue-lt: #50a0c8;
 
-  /* ── Text: warm cream ── */
-  --c-text:    #f5e8d4;
-  --c-text-dim:#8a6050;
-  --c-text-mut:#4a2820;
-  --c-ink:     #180606;
+  /* ── 文字：羊皮紙暖白 ── */
+  --c-text:    #f5e8d0;
+  --c-text-dim:#9a7a5a;
+  --c-text-mut:#5a4030;
+  --c-ink:     #2a1a0a;
 
-  /* ── Rarity ── */
-  --r-common:    #a08868;
-  --r-uncommon:  #58a858;
-  --r-rare:      #4888c0;
-  --r-epic:      #9858c8;
-  --r-legendary: #e8783a;
+  /* ── 稀有度 ── */
+  --r-common:    #a09070;
+  --r-uncommon:  #60a860;
+  --r-rare:      #5090c0;
+  --r-epic:      #a060c8;
+  --r-legendary: #e8883a;
 
   --font-head: 'Noto Serif SC', serif;
   --font-body: 'Noto Sans SC', sans-serif;
@@ -66,16 +66,15 @@ html, body { height: 100%; background: var(--c-bg); color: var(--c-text); font-f
   display: flex;
   flex-direction: column;
   position: relative;
-  /* Fine stone texture */
+  /* 石磚紋理 */
   background-image:
-    repeating-linear-gradient(0deg,   transparent, transparent 48px, rgba(0,0,0,0.07) 48px, rgba(0,0,0,0.07) 50px),
-    repeating-linear-gradient(90deg,  transparent, transparent 68px, rgba(0,0,0,0.05) 68px, rgba(0,0,0,0.05) 70px),
-    repeating-linear-gradient(45deg,  transparent, transparent 28px, rgba(80,10,5,0.04) 28px, rgba(80,10,5,0.04) 30px);
+    repeating-linear-gradient(0deg,   transparent, transparent 38px, rgba(0,0,0,0.10) 38px, rgba(0,0,0,0.10) 40px),
+    repeating-linear-gradient(90deg,  transparent, transparent 58px, rgba(0,0,0,0.07) 58px, rgba(0,0,0,0.07) 60px);
   background-color: var(--c-bg);
-  background-size: 70px 50px, 70px 50px, 30px 30px;
+  background-size: 60px 40px;
 }
 
-/* Deep crimson vignette */
+/* 燭光從中央透射出來的暖光暈 */
 #game::after {
   content: '';
   position: fixed;
@@ -83,23 +82,28 @@ html, body { height: 100%; background: var(--c-bg); color: var(--c-text); font-f
   pointer-events: none;
   z-index: 0;
   background:
-    radial-gradient(ellipse at 50% 0%,   rgba(180, 30, 8, 0.18) 0%, transparent 55%),
-    radial-gradient(ellipse at 0%  100%, rgba(140, 20, 5, 0.12) 0%, transparent 45%),
-    radial-gradient(ellipse at 100% 100%,rgba(120, 15, 5, 0.10) 0%, transparent 45%),
-    radial-gradient(ellipse at 50% 50%,  rgba(60,  5,  2, 0.25) 0%, transparent 80%);
+    /* 中心向外的主光暈 */
+    radial-gradient(ellipse 80% 60% at 50% 35%, rgba(220, 130, 40, 0.13) 0%, rgba(180, 90, 20, 0.07) 45%, transparent 75%),
+    /* 頂部右側燈籠光源 */
+    radial-gradient(ellipse 50% 40% at 75% 8%,  rgba(255, 150, 40, 0.10) 0%, transparent 60%),
+    /* 底部地面反光 */
+    radial-gradient(ellipse 100% 30% at 50% 100%, rgba(160, 80, 20, 0.08) 0%, transparent 55%),
+    /* 四角壓暗（讓中心更亮） */
+    radial-gradient(ellipse 120% 120% at 50% 50%, transparent 40%, rgba(0,0,0,0.35) 100%);
 }
 
-/* Crimson atmospheric glows */
+/* 左上燭光暖源 */
 .warm-glow-tl {
-  position: fixed; top: -60px; left: -60px;
-  width: 350px; height: 350px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(180,40,15,0.13) 0%, transparent 70%);
+  position: fixed; top: -60px; left: -40px;
+  width: 380px; height: 380px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(220,110,30,0.11) 0%, transparent 70%);
   pointer-events: none; z-index: 0;
 }
+/* 右下環境反光 */
 .warm-glow-br {
   position: fixed; bottom: -60px; right: -60px;
-  width: 320px; height: 320px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(150,25,10,0.10) 0%, transparent 70%);
+  width: 340px; height: 340px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(190,90,20,0.08) 0%, transparent 70%);
   pointer-events: none; z-index: 0;
 }
 
@@ -221,109 +225,142 @@ html, body { height: 100%; background: var(--c-bg); color: var(--c-text); font-f
   align-items: start;
 }
 
-/* Scene: anime dungeon atmosphere */
+/* Scene: 溫暖燭光室內感 */
 .scene-card {
   border-radius: var(--rad-lg);
   overflow: hidden;
-  border: 1px solid rgba(150,40,18,0.3);
-  box-shadow: 0 10px 40px rgba(0,0,0,.7), 0 0 0 1px rgba(180,50,15,.08);
+  border: 1px solid var(--c-brd);
+  box-shadow: 0 8px 32px rgba(0,0,0,.55),
+              0 0 0 1px rgba(210,130,40,.06),
+              /* 卡片內外的溫暖光暈 */
+              0 0 60px rgba(200,100,30,.08);
 }
 .scene-world { position: relative; height: 220px; overflow: hidden; }
 .scene-sky {
   position: absolute; inset: 0;
+  /* 溫暖的室內牆壁感 — 從燈籠受光的暖棕色到底部深影 */
   background: linear-gradient(180deg,
-    #0e0303 0%,
-    #1a0605 25%,
-    #250a06 55%,
-    #2e1008 100%);
+    #1c1005 0%,
+    #2d1a08 25%,
+    #3a2010 55%,
+    #221408 100%);
 }
-.scene-lantern {
-  position: absolute; top: 12px; right: 20px;
-  font-size: 2.2rem; line-height: 1;
-  animation: lantern-sway 3s ease-in-out infinite;
-  filter: drop-shadow(0 0 18px rgba(255,120,20,.8)) drop-shadow(0 0 35px rgba(200,70,10,.4));
-}
-@keyframes lantern-sway {
-  0%, 100% { transform: rotate(-6deg); }
-  50%       { transform: rotate(6deg); }
-}
-/* Rich lantern light cast */
+
+/* 燈籠主光源 — 右上角向外擴散的強烈溫暖光暈 */
 .scene-sky::after {
   content: '';
-  position: absolute;
-  top: 0; right: 0;
-  width: 160px; height: 180px;
-  background: radial-gradient(ellipse at 75% 8%, rgba(255,110,20,.22) 0%, rgba(200,60,10,.08) 40%, transparent 70%);
+  position: absolute; inset: 0;
+  background:
+    /* 右上角燈籠光核心 */
+    radial-gradient(ellipse 55% 55% at 82% 5%,
+      rgba(255, 165, 50, 0.42) 0%,
+      rgba(240, 120, 25, 0.20) 30%,
+      rgba(200,  80, 15, 0.06) 60%,
+      transparent 80%),
+    /* 左側牆面受光（燈光反射） */
+    radial-gradient(ellipse 40% 70% at 5% 30%,
+      rgba(200, 110, 35, 0.12) 0%,
+      transparent 65%),
+    /* 地面反光 */
+    radial-gradient(ellipse 100% 35% at 50% 100%,
+      rgba(160, 80, 20, 0.18) 0%,
+      transparent 60%);
 }
-/* Left candle glow */
+
+/* 地板暗部 */
 .scene-sky::before {
   content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0; height: 50%;
-  background: linear-gradient(0deg, rgba(180,40,10,.18) 0%, transparent 100%);
+  position: absolute; bottom: 0; left: 0; right: 0; height: 45%;
+  background: linear-gradient(0deg,
+    rgba(0,0,0,0.40) 0%,
+    rgba(10,5,2,0.15) 50%,
+    transparent 100%);
+  z-index: 1;
 }
+
+.scene-lantern {
+  position: absolute; top: 10px; right: 18px;
+  font-size: 2.2rem; line-height: 1;
+  animation: lantern-sway 3.5s ease-in-out infinite;
+  /* 燈籠本身帶強烈光暈 */
+  filter:
+    drop-shadow(0 0 10px rgba(255,160,40,.90))
+    drop-shadow(0 0 25px rgba(230,100,20,.55))
+    drop-shadow(0 0 50px rgba(200,70,10,.25));
+  z-index: 3;
+}
+@keyframes lantern-sway {
+  0%, 100% { transform: rotate(-5deg); filter: drop-shadow(0 0 10px rgba(255,160,40,.9)) drop-shadow(0 0 25px rgba(230,100,20,.55)) drop-shadow(0 0 50px rgba(200,70,10,.25)); }
+  50%       { transform: rotate(5deg);  filter: drop-shadow(0 0 14px rgba(255,170,50,1.0)) drop-shadow(0 0 35px rgba(240,110,25,.70)) drop-shadow(0 0 65px rgba(210,80,15,.35)); }
+}
+
 .scene-trees {
-  position: absolute; bottom: 45px; left: 0; right: 0;
-  text-align: center; font-size: 2.8rem; letter-spacing: -8px;
+  position: absolute; bottom: 44px; left: 0; right: 0;
+  text-align: center; font-size: 2.7rem; letter-spacing: -7px;
   animation: tree-sway 5s ease-in-out infinite;
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,.8)) drop-shadow(0 0 20px rgba(150,30,5,.3));
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,.7));
+  z-index: 2;
 }
-.scene-trees span { opacity: .55; }
+.scene-trees span { opacity: .60; }
 @keyframes tree-sway {
-  0%, 100% { transform: rotate(-.5deg); }
-  50%       { transform: rotate(.5deg); }
+  0%, 100% { transform: rotate(-.4deg); }
+  50%       { transform: rotate(.4deg); }
 }
 .scene-ground {
-  position: absolute; bottom: 0; left: 0; right: 0; height: 48px;
-  background: linear-gradient(180deg, #1e0c05, #0a0303);
-  border-top: 1px solid rgba(160,50,15,.2);
+  position: absolute; bottom: 0; left: 0; right: 0; height: 44px;
+  background: linear-gradient(180deg, #1e1006, #0e0804);
+  border-top: 1px solid rgba(160,90,30,.2);
+  z-index: 2;
 }
 .scene-hero {
-  position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%);
-  font-size: 2.9rem; line-height: 1;
-  filter: drop-shadow(0 0 12px rgba(255,120,40,.4)) drop-shadow(0 6px 12px rgba(0,0,0,.9));
+  position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
+  font-size: 2.8rem; line-height: 1; z-index: 3;
+  /* 角色被燭光暖染 */
+  filter:
+    drop-shadow(0 0 10px rgba(255,140,40,.35))
+    drop-shadow(0 4px 10px rgba(0,0,0,.80));
 }
 .scene-hero.collecting { animation: hero-bob 1.2s ease-in-out infinite; }
 @keyframes hero-bob {
   0%, 100% { transform: translateX(-50%) translateY(0); }
   50%       { transform: translateX(-50%) translateY(-10px); }
 }
-.sparkle-container { position: absolute; inset: 0; pointer-events: none; }
+.sparkle-container { position: absolute; inset: 0; pointer-events: none; z-index: 4; }
 .sparkle { position: absolute; animation: sparkle-up .85s ease forwards; font-size: 1rem; pointer-events: none; }
 @keyframes sparkle-up {
   0%   { opacity: 1; transform: translateY(0) scale(.5); }
   100% { opacity: 0; transform: translateY(-40px) scale(1.3); }
 }
 
-/* Scene caption — anime game speech bubble style */
+/* Scene caption — 溫暖對話泡泡 */
 .scene-caption {
   padding: 10px 14px;
-  background: rgba(8,2,2,0.88);
-  border-top: 1px solid rgba(150,40,15,0.2);
+  background: rgba(14, 9, 3, 0.88);
+  border-top: 1px solid var(--c-brd);
   text-align: left;
 }
 .caption-bubble {
   display: inline-block;
   font-family: var(--font-head);
-  font-size: .8rem;
+  font-size: .80rem;
   font-weight: 500;
   color: var(--c-text);
-  background: rgba(5,1,1,0.92);
-  border: 1px solid rgba(170,55,20,0.35);
+  background: rgba(10,6,2,0.90);
+  border: 1px solid rgba(200,120,40,.30);
   border-radius: 8px;
   padding: 6px 14px;
   letter-spacing: .5px;
-  box-shadow: 0 2px 12px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,180,100,.04);
+  box-shadow: 0 2px 12px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,200,120,.05);
 }
 
 /* Timer card */
 .timer-card {
   display: flex; flex-direction: column; align-items: center; gap: 14px;
   padding: 28px 22px;
-  background: rgba(10,3,3,0.88);
-  border: 1px solid rgba(150,40,18,0.3);
+  background: rgba(18, 11, 4, 0.90);
+  border: 1px solid var(--c-brd);
   border-radius: var(--rad-lg);
-  box-shadow: 0 10px 40px rgba(0,0,0,.6), inset 0 1px 0 rgba(200,60,20,.05);
+  box-shadow: 0 8px 32px rgba(0,0,0,.55), inset 0 1px 0 rgba(220,130,50,.06);
   backdrop-filter: blur(10px);
 }
 .timer-subtitle {
@@ -333,22 +370,29 @@ html, body { height: 100%; background: var(--c-bg); color: var(--c-text); font-f
   text-transform: uppercase;
 }
 
-/* The big timer — anime game badge style */
+/* 計時器 — 燭光徽章風格 */
 .timer-face {
   font-family: var(--font-mono);
   font-size: 2.3rem; color: var(--c-amber-lt);
-  text-shadow: 0 0 22px rgba(220,110,40,.6), 0 0 50px rgba(200,80,20,.25);
+  text-shadow: 0 0 20px rgba(240,140,50,.65), 0 0 45px rgba(220,100,25,.28);
   letter-spacing: 4px;
   padding: 11px 26px;
-  background: rgba(5, 1, 1, 0.95);
-  border: 1px solid rgba(190,90,30,.4);
+  background: rgba(10, 6, 2, 0.95);
+  border: 1px solid rgba(210,130,45,.38);
   border-radius: var(--rad-pill);
-  box-shadow: inset 0 2px 0 rgba(255,200,100,.04), 0 4px 20px rgba(0,0,0,.6), 0 0 30px rgba(180,60,10,.08);
+  box-shadow: inset 0 2px 0 rgba(255,210,120,.05), 0 4px 18px rgba(0,0,0,.55), 0 0 35px rgba(200,100,20,.10);
 }
 .timer-face.running { animation: timer-pulse 2s ease-in-out infinite; }
 @keyframes timer-pulse {
-  0%, 100% { text-shadow: 0 0 22px rgba(220,110,40,.6); border-color: rgba(190,90,30,.4); }
-  50%       { text-shadow: 0 0 40px rgba(230,120,50,1), 0 0 70px rgba(200,80,20,.4); border-color: rgba(230,120,50,.75); box-shadow: inset 0 2px 0 rgba(255,200,100,.06), 0 4px 20px rgba(0,0,0,.6), 0 0 50px rgba(200,80,10,.18); }
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(240,140,50,.65), 0 0 45px rgba(220,100,25,.28);
+    border-color: rgba(210,130,45,.38);
+  }
+  50% {
+    text-shadow: 0 0 32px rgba(255,160,60,1.0), 0 0 65px rgba(230,110,30,.45);
+    border-color: rgba(240,160,55,.70);
+    box-shadow: inset 0 2px 0 rgba(255,210,120,.07), 0 4px 18px rgba(0,0,0,.55), 0 0 55px rgba(220,110,25,.20);
+  }
 }
 
 .timer-progress { width: 100%; height: 3px; background: rgba(255,255,255,0.06); border-radius: var(--rad-pill); overflow: hidden; }
@@ -367,10 +411,10 @@ html, body { height: 100%; background: var(--c-bg); color: var(--c-text); font-f
 
 /* Harvest card */
 .harvest-card {
-  background: rgba(10,3,3,0.88);
-  border: 1px solid rgba(150,40,18,0.3); border-radius: var(--rad-lg);
+  background: rgba(18,11,4,0.90);
+  border: 1px solid var(--c-brd); border-radius: var(--rad-lg);
   padding: 18px;
-  box-shadow: 0 10px 40px rgba(0,0,0,.6);
+  box-shadow: 0 8px 32px rgba(0,0,0,.50);
   backdrop-filter: blur(10px);
 }
 .harvest-title {
@@ -444,9 +488,9 @@ html, body { height: 100%; background: var(--c-bg); color: var(--c-text); font-f
 .village-sidebar {
   display: flex; flex-direction: row; gap: 3px;
   padding: 10px;
-  border-right: none; border-bottom: 1px solid rgba(140,35,15,0.2);
+  border-right: none; border-bottom: 1px solid var(--c-brd);
   overflow-x: auto;
-  background: rgba(6,1,1,.75);
+  background: rgba(14,9,3,.75);
   backdrop-filter: blur(12px);
 }
 .vtab {
@@ -483,11 +527,11 @@ html, body { height: 100%; background: var(--c-bg); color: var(--c-text); font-f
 /* Recipe cards */
 .recipe-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(195px, 1fr)); gap: 11px; }
 .recipe-card {
-  background: rgba(12,4,4,0.88); border: 1px solid rgba(145,38,18,0.28);
+  background: rgba(18,12,5,0.88); border: 1px solid var(--c-brd);
   border-radius: var(--rad); padding: 14px; transition: all .2s;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(6px);
 }
-.recipe-card:hover { border-color: var(--c-brd-h); background: rgba(18,6,6,.92); }
+.recipe-card:hover { border-color: var(--c-brd-h); background: rgba(26,17,7,.92); }
 .recipe-hdr { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
 .recipe-emoji { font-size: 1.85rem; }
 .recipe-name { font-family: var(--font-head); font-size: .8rem; font-weight: 600; color: var(--c-text); }
@@ -552,16 +596,19 @@ html, body { height: 100%; background: var(--c-bg); color: var(--c-text); font-f
 #screen-dungeon { min-height: calc(100vh - 115px); }
 .dungeon-layout { display: grid; grid-template-columns: 1fr; min-height: calc(100vh - 125px); }
 
-/* Left — monster area with deep crimson atmosphere */
+/* Left — monster area：燭光暖染的戰場 */
 .dung-left {
   display: flex; flex-direction: column; gap: 12px;
-  padding: 18px; border-right: none; border-bottom: 1px solid rgba(140,35,15,0.2);
+  padding: 18px; border-right: none; border-bottom: 1px solid var(--c-brd);
   background:
-    radial-gradient(ellipse at 50% 20%, rgba(160,20,8,.22) 0%, transparent 55%),
-    radial-gradient(ellipse at 80% 70%, rgba(130,15,5,.12) 0%, transparent 50%),
-    radial-gradient(ellipse at 20% 90%, rgba(100,10,3,.10) 0%, transparent 45%),
-    rgba(8,2,2,0.65);
-  backdrop-filter: blur(10px);
+    /* 頂部燈籠光 */
+    radial-gradient(ellipse at 75% 5%,  rgba(230,120,35,.15) 0%, transparent 50%),
+    /* 中央暖光 */
+    radial-gradient(ellipse at 50% 35%, rgba(170, 70,20,.10) 0%, transparent 55%),
+    /* 底部陰影 */
+    radial-gradient(ellipse at 50% 100%,rgba( 80, 20, 5,.12) 0%, transparent 50%),
+    rgba(16,10,4,0.65);
+  backdrop-filter: blur(8px);
 }
 
 .floor-badge {
@@ -644,7 +691,7 @@ html, body { height: 100%; background: var(--c-bg); color: var(--c-text); font-f
 .dung-right { display: flex; flex-direction: column; gap: 11px; padding: 18px; }
 .combat-log-wrap {
   flex: 1; display: flex; flex-direction: column;
-  background: rgba(8,2,2,0.88); border: 1px solid rgba(140,35,15,0.28); border-radius: var(--rad); overflow: hidden;
+  background: rgba(14,9,3,0.88); border: 1px solid var(--c-brd); border-radius: var(--rad); overflow: hidden;
   backdrop-filter: blur(10px);
 }
 .log-header {
@@ -674,7 +721,7 @@ html, body { height: 100%; background: var(--c-bg); color: var(--c-text); font-f
 .log-loot    { color: var(--c-sage-lt); background: rgba(50,100,50,.1); }
 
 .combat-actions {
-  background: rgba(8,2,2,0.88); border: 1px solid rgba(140,35,15,0.28);
+  background: rgba(14,9,3,0.88); border: 1px solid var(--c-brd);
   border-radius: var(--rad); padding: 13px;
   backdrop-filter: blur(10px);
 }
@@ -706,7 +753,7 @@ html, body { height: 100%; background: var(--c-bg); color: var(--c-text); font-f
 /* ════════════════════ MODAL ════════════════════ */
 .modal-overlay {
   position: fixed; inset: 0;
-  background: rgba(3,0,0,.92);
+  background: rgba(6,4,1,.90);
   z-index: 200;
   display: flex; align-items: center; justify-content: center;
   backdrop-filter: blur(12px) saturate(1.2);
@@ -714,11 +761,11 @@ html, body { height: 100%; background: var(--c-bg); color: var(--c-text); font-f
 }
 .modal-overlay.hidden { display: none; }
 .modal-box {
-  background: rgba(14,4,4,0.97);
-  border: 1px solid rgba(190,65,30,.4);
+  background: rgba(20,13,5,0.97);
+  border: 1px solid rgba(210,130,50,.40);
   border-radius: var(--rad-lg); padding: 28px;
   max-width: 395px; width: 92%;
-  box-shadow: 0 24px 60px rgba(0,0,0,.9), 0 0 40px rgba(160,30,10,.12), inset 0 1px 0 rgba(200,80,30,.07);
+  box-shadow: 0 24px 60px rgba(0,0,0,.85), 0 0 40px rgba(200,100,25,.10), inset 0 1px 0 rgba(230,160,60,.07);
 }
 .modal-body { margin-bottom: 20px; font-size: .9rem; line-height: 1.68; color: var(--c-text); }
 .modal-body h2 { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; color: var(--c-amber-lt); letter-spacing: 2px; margin-bottom: 12px; }
@@ -729,10 +776,10 @@ html, body { height: 100%; background: var(--c-bg); color: var(--c-text); font-f
 .toast {
   position: fixed; top: 75px; right: 18px; z-index: 300;
   padding: 10px 20px;
-  background: rgba(8,2,2,.97); border: 1px solid rgba(185,60,25,.5);
+  background: rgba(16,10,3,.97); border: 1px solid rgba(210,130,45,.45);
   border-radius: var(--rad-pill); color: var(--c-amber-lt);
   font-family: var(--font-head); font-size: .73rem; font-weight: 600; letter-spacing: .5px;
-  box-shadow: 0 4px 24px rgba(0,0,0,.7), 0 0 20px rgba(170,50,15,.18);
+  box-shadow: 0 4px 22px rgba(0,0,0,.65), 0 0 18px rgba(200,110,25,.15);
   animation: toast-in .25s ease; max-width: 280px; pointer-events: none;
 }
 .toast.hidden { display: none; }
@@ -767,8 +814,8 @@ html, body { height: 100%; background: var(--c-bg); color: var(--c-text); font-f
   .focus-grid    { grid-template-columns: 1fr 1.15fr 1fr; max-width: 1080px; }
   .dungeon-layout { grid-template-columns: 1fr 1fr; }
   .village-layout { grid-template-columns: 175px 1fr; }
-  .village-sidebar { flex-direction: column; overflow-x: unset; padding: 14px 10px; border-right: 1px solid rgba(140,35,15,0.2); border-bottom: none; }
-  .dung-left { border-right: 1px solid rgba(140,35,15,0.2); border-bottom: none; }
+  .village-sidebar { flex-direction: column; overflow-x: unset; padding: 14px 10px; border-right: 1px solid var(--c-brd); border-bottom: none; }
+  .dung-left { border-right: 1px solid var(--c-brd); border-bottom: none; }
   .vtab { white-space: normal; }
   .timer-face { font-size: 2.9rem; }
   .game-title { font-size: 1rem; }
