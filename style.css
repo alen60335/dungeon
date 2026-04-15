@@ -145,7 +145,7 @@ html, body { height: 100%; background: var(--c-bg); color: var(--c-text); font-f
 /* Game title */
 .game-title {
   font-family: var(--font-head);
-  font-size: 1rem;
+  font-size: .82rem;
   font-weight: 700;
   line-height: 1.2;
   color: var(--c-amber-lt);
@@ -156,7 +156,7 @@ html, body { height: 100%; background: var(--c-bg); color: var(--c-text); font-f
 .game-title span { display: block; font-size: .8rem; color: var(--c-amber); opacity: .88; }
 
 /* Resource chips — pill badges like in screenshot */
-.res-chips { display: flex; flex-wrap: wrap; gap: 5px; justify-content: flex-end; }
+.res-chips { display: none; flex-wrap: wrap; gap: 5px; justify-content: flex-end; }
 .res-chip {
   display: inline-flex; align-items: center; gap: 3px;
   padding: 4px 10px;
@@ -212,9 +212,9 @@ html, body { height: 100%; background: var(--c-bg); color: var(--c-text); font-f
 /* ════════════════════ FOCUS SCREEN ════════════════════ */
 .focus-grid {
   display: grid;
-  grid-template-columns: 1fr 1.15fr 1fr;
+  grid-template-columns: 1fr;
   gap: 16px; padding: 18px;
-  max-width: 1080px; margin: 0 auto; width: 100%;
+  max-width: 480px; margin: 0 auto; width: 100%;
   align-items: start;
 }
 
@@ -321,7 +321,7 @@ html, body { height: 100%; background: var(--c-bg); color: var(--c-text); font-f
 /* The big timer — like the pill badge in screenshot */
 .timer-face {
   font-family: var(--font-mono);
-  font-size: 2.9rem; color: var(--c-amber-lt);
+  font-size: 2.3rem; color: var(--c-amber-lt);
   text-shadow: 0 0 20px rgba(232,135,58,.5), 0 0 40px rgba(232,135,58,.2);
   letter-spacing: 3px;
   padding: 10px 24px;
@@ -424,12 +424,13 @@ html, body { height: 100%; background: var(--c-bg); color: var(--c-text); font-f
 
 /* ════════════════════ VILLAGE ════════════════════ */
 #screen-village { min-height: calc(100vh - 115px); }
-.village-layout { display: grid; grid-template-columns: 175px 1fr; min-height: calc(100vh - 125px); }
+.village-layout { display: grid; grid-template-columns: 1fr; min-height: calc(100vh - 125px); }
 
 .village-sidebar {
-  display: flex; flex-direction: column; gap: 3px;
-  padding: 14px 10px;
-  border-right: 1px solid var(--c-brd);
+  display: flex; flex-direction: row; gap: 3px;
+  padding: 10px;
+  border-right: none; border-bottom: 1px solid var(--c-brd);
+  overflow-x: auto;
   background: rgba(10,6,3,.6);
   backdrop-filter: blur(8px);
 }
@@ -438,7 +439,7 @@ html, body { height: 100%; background: var(--c-bg); color: var(--c-text); font-f
   background: transparent; border: 1px solid transparent; border-radius: var(--rad);
   color: var(--c-text-dim); cursor: pointer;
   font-family: var(--font-head); font-size: .7rem; font-weight: 500; letter-spacing: .3px;
-  text-align: left; transition: all .2s;
+  text-align: left; transition: all .2s; white-space: nowrap;
 }
 .vtab:hover { color: var(--c-text); background: rgba(180,100,30,.08); }
 .vtab.active {
@@ -498,7 +499,7 @@ html, body { height: 100%; background: var(--c-bg); color: var(--c-text); font-f
 .pantry-qty { color: var(--c-amber-lt); font-family: var(--font-head); font-weight: 700; margin-left: 4px; }
 
 /* Inventory */
-.inv-layout { display: grid; grid-template-columns: 225px 1fr; gap: 18px; }
+.inv-layout { display: grid; grid-template-columns: 1fr; gap: 18px; }
 .inv-section-h { font-family: var(--font-head); font-size: .76rem; font-weight: 700; color: var(--c-amber); letter-spacing: 2px; margin-bottom: 10px; }
 .bag-count { color: var(--c-text-mut); font-size: .7rem; font-weight: 400; }
 .equip-slots { display: flex; flex-direction: column; gap: 9px; margin-bottom: 13px; }
@@ -534,12 +535,12 @@ html, body { height: 100%; background: var(--c-bg); color: var(--c-text); font-f
 
 /* ════════════════════ DUNGEON ════════════════════ */
 #screen-dungeon { min-height: calc(100vh - 115px); }
-.dungeon-layout { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 125px); }
+.dungeon-layout { display: grid; grid-template-columns: 1fr; min-height: calc(100vh - 125px); }
 
 /* Left — monster area with warm blood red atmosphere */
 .dung-left {
   display: flex; flex-direction: column; gap: 12px;
-  padding: 18px; border-right: 1px solid var(--c-brd);
+  padding: 18px; border-right: none; border-bottom: 1px solid var(--c-brd);
   background:
     radial-gradient(ellipse at 50% 30%, rgba(140,30,10,.14) 0%, transparent 60%),
     radial-gradient(ellipse at 80% 80%, rgba(180,80,20,.06) 0%, transparent 50%),
@@ -564,7 +565,7 @@ html, body { height: 100%; background: var(--c-bg); color: var(--c-text); font-f
   background: radial-gradient(ellipse at 50% 60%, rgba(160,40,10,.18) 0%, transparent 65%);
 }
 .monster-sprite {
-  font-size: 7rem; line-height: 1;
+  font-size: 5rem; line-height: 1;
   filter: drop-shadow(0 10px 20px rgba(0,0,0,.7));
   animation: monster-idle 3s ease-in-out infinite;
   position: relative; z-index: 1; user-select: none;
@@ -745,16 +746,17 @@ html, body { height: 100%; background: var(--c-bg); color: var(--c-text); font-f
 ::-webkit-scrollbar-thumb { background: rgba(180,100,30,.25); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(200,120,40,.4); }
 
-/* ════════════════════ RESPONSIVE ════════════════════ */
-@media (max-width: 820px) {
-  .focus-grid    { grid-template-columns: 1fr; }
-  .dungeon-layout { grid-template-columns: 1fr; }
-  .village-layout { grid-template-columns: 1fr; }
-  .village-sidebar { flex-direction: row; overflow-x: auto; padding: 10px; border-right: none; border-bottom: 1px solid var(--c-brd); }
-  .vtab { white-space: nowrap; }
-  .timer-face { font-size: 2.3rem; }
-  .game-title { font-size: .82rem; }
-  .res-chips { display: none; }
-  .monster-sprite { font-size: 5rem; }
-  .inv-layout { grid-template-columns: 1fr; }
+/* ════════════════════ RESPONSIVE (wide/landscape) ════════════════════ */
+@media (min-width: 821px) {
+  .focus-grid    { grid-template-columns: 1fr 1.15fr 1fr; max-width: 1080px; }
+  .dungeon-layout { grid-template-columns: 1fr 1fr; }
+  .village-layout { grid-template-columns: 175px 1fr; }
+  .village-sidebar { flex-direction: column; overflow-x: unset; padding: 14px 10px; border-right: 1px solid var(--c-brd); border-bottom: none; }
+  .dung-left { border-right: 1px solid var(--c-brd); border-bottom: none; }
+  .vtab { white-space: normal; }
+  .timer-face { font-size: 2.9rem; }
+  .game-title { font-size: 1rem; }
+  .res-chips { display: flex; }
+  .monster-sprite { font-size: 7rem; }
+  .inv-layout { grid-template-columns: 225px 1fr; }
 }
