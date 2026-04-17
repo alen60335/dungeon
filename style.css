@@ -199,7 +199,8 @@ html, body { height: 100%; background: var(--c-bg); color: var(--c-text); font-f
   transition: all .22s;
   cursor: pointer;
 }
-.phase-pill:hover { color: var(--c-text-dim); border-color: rgba(180,50,25,.3); }
+.phase-pill { cursor: pointer; }
+.phase-pill:hover { color: var(--c-amber-lt); border-color: rgba(210,100,40,.4); background: rgba(100,40,10,0.15); }
 .phase-pill.active {
   color: var(--c-amber-lt);
   border-color: rgba(210,100,40,.5);

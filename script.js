@@ -568,9 +568,9 @@ function equipWeapon(id) {
 
 /* ── VILLAGE TABS ── */
 function initVillageTabs() {
-  document.querySelectorAll('.vnav[data-panel]').forEach(tab => {
+  document.querySelectorAll('.vtab[data-panel]').forEach(tab => {
     tab.onclick = () => {
-      document.querySelectorAll('.vnav[data-panel]').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.vtab[data-panel]').forEach(t => t.classList.remove('active'));
       document.querySelectorAll('.vpanel').forEach(v => v.classList.remove('active'));
       tab.classList.add('active');
       $('panel-' + tab.dataset.panel).classList.add('active');
@@ -885,10 +885,17 @@ function initFlee() {
 //  INIT
 // ═══════════════════════════════════════════════════════════
 
+function initPhaseNav() {
+  $('pnav-focus').onclick   = () => setPhase('focus');
+  $('pnav-village').onclick = () => setPhase('village');
+  $('pnav-dungeon').onclick = () => { if (GS.dg.on) setPhase('dungeon'); };
+}
+
 function init() {
   initParticles();
   initFocus();
   initVillageTabs();
+  initPhaseNav();
   initFlee();
 
   // Render village content so it's ready when user switches
