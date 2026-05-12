@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════
-   番茄鐘地下城 — style.css  v1.7
+   番茄鐘地下城 — style.css  v1.8
    白底暖光主題，三頁式底部導航
 ═══════════════════════════════════════════════ */
 
@@ -112,7 +112,7 @@ html, body {
 .scene-hero.collecting { transform: none; animation: hero-traverse 9s linear infinite, hero-bob 0.44s ease-in-out infinite; }
 .scene-hero.collecting .legs-a { animation: leg-a 0.44s steps(1) infinite; }
 .scene-hero.collecting .legs-b { animation: leg-b 0.44s steps(1) infinite; }
-@keyframes hero-traverse { 0% { left: -60px; } 100% { left: calc(100% + 10px); } }
+@keyframes hero-traverse { 0% { left: -70px; } 100% { left: calc(100% + 10px); } }
 @keyframes hero-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
 @keyframes leg-a { 0%, 49.9% { opacity: 1; } 50%, 100% { opacity: 0; } }
 @keyframes leg-b { 0%, 49.9% { opacity: 0; } 50%, 100% { opacity: 1; } }
