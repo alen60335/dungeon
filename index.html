@@ -11,8 +11,6 @@
 </head>
 <body>
 <div id="game">
-  <div class="warm-glow-tl"></div>
-  <div class="warm-glow-br"></div>
 
   <!-- ═══ HEADER ═══ -->
   <header id="game-header">
@@ -45,18 +43,9 @@
     </div>
   </header>
 
-  <!-- ═══ PHASE NAV ═══ -->
-  <nav id="phase-nav">
-    <div class="phase-pill active" id="pnav-focus">⏱ 專注</div>
-    <div class="phase-line"></div>
-    <div class="phase-pill" id="pnav-village">🏘 村莊</div>
-    <div class="phase-line"></div>
-    <div class="phase-pill" id="pnav-dungeon">⚔️ 地下城</div>
-  </nav>
-
-  <!-- ═══════════════════ FOCUS SCREEN ═══════════════════ -->
+  <!-- ═══════════════════ 採集畫面 ═══════════════════ -->
   <section class="screen active" id="screen-focus">
-    <div class="focus-grid">
+    <div class="focus-layout">
 
       <!-- Scene -->
       <div class="scene-card">
@@ -89,7 +78,7 @@
           <label>計時：<input type="number" id="timer-input" value="25" min="1" max="99"> 分鐘</label>
         </div>
         <div class="goto-village-hint">
-          <button class="btn btn-stone" id="btn-skip-to-village">🏘 直接前往村莊</button>
+          <button class="btn btn-stone" id="btn-skip-to-village">🎒 直接前往包包</button>
           <div class="hint-text">（初始資源可直接使用）</div>
         </div>
       </div>
@@ -144,72 +133,68 @@
     </div>
   </section>
 
-  <!-- ═══════════════════ VILLAGE SCREEN ═══════════════════ -->
-  <section class="screen" id="screen-village">
-    <div class="village-layout">
-      <aside class="village-sidebar">
-        <button class="vtab active" data-panel="forge">🔨 鍛造台</button>
-        <button class="vtab" data-panel="kitchen">🍳 廚房</button>
-        <button class="vtab" data-panel="inventory">🎒 裝備</button>
-        <hr class="sidebar-hr">
-        <button class="vtab vtab-danger" id="btn-go-dungeon">⚔️ 出征地下城</button>
-        <button class="vtab vtab-muted" id="btn-go-focus">⏱ 返回採集</button>
-      </aside>
-      <main class="village-main">
+  <!-- ═══════════════════ 包包畫面 ═══════════════════ -->
+  <section class="screen" id="screen-bag">
+    <div class="bag-topbar">
+      <button class="btab active" data-panel="forge">🔨 鍛造</button>
+      <button class="btab" data-panel="kitchen">🍳 廚房</button>
+      <button class="btab" data-panel="equip">🎒 裝備</button>
+      <button class="btn btn-red bag-dungeon-btn" id="btn-go-dungeon">⚔️ 出征</button>
+    </div>
+    <div class="bag-content">
 
-        <!-- FORGE -->
-        <div class="vpanel active" id="panel-forge">
-          <h2 class="panel-title">⚒️ 鍛造台</h2>
-          <p class="panel-sub">使用採集到的材料打造武器與防具（固定屬性）</p>
-          <div class="recipe-grid" id="forge-grid"></div>
+      <!-- FORGE -->
+      <div class="bpanel active" id="panel-forge">
+        <h2 class="panel-title">⚒️ 鍛造台</h2>
+        <p class="panel-sub">使用採集到的材料打造武器與防具</p>
+        <div class="recipe-grid" id="forge-grid"></div>
+      </div>
+
+      <!-- KITCHEN -->
+      <div class="bpanel" id="panel-kitchen">
+        <h2 class="panel-title">🍳 廚房</h2>
+        <p class="panel-sub">將食材烹飪成消耗品，可在戰鬥中使用</p>
+        <div class="recipe-grid" id="kitchen-grid"></div>
+        <div class="pantry-section">
+          <h3 class="pantry-title">🧺 食物庫存</h3>
+          <div class="pantry-row" id="pantry-row"></div>
         </div>
+      </div>
 
-        <!-- KITCHEN -->
-        <div class="vpanel" id="panel-kitchen">
-          <h2 class="panel-title">🍳 廚房</h2>
-          <p class="panel-sub">將食材烹飪成消耗品，可在戰鬥中使用</p>
-          <div class="recipe-grid" id="kitchen-grid"></div>
-          <div class="pantry-section">
-            <h3 class="pantry-title">🧺 食物庫存</h3>
-            <div class="pantry-row" id="pantry-row"></div>
-          </div>
-        </div>
-
-        <!-- INVENTORY -->
-        <div class="vpanel" id="panel-inventory">
-          <h2 class="panel-title">🎒 裝備與屬性</h2>
-          <div class="inv-layout">
-            <div class="equip-section">
-              <h3 class="inv-section-h">裝備欄</h3>
-              <div class="equip-slots">
-                <div class="equip-slot">
-                  <div class="eslot-label">⚔️ 武器</div>
-                  <div class="eslot-body" id="eslot-weapon">（空）</div>
-                </div>
-                <div class="equip-slot">
-                  <div class="eslot-label">🛡️ 防具</div>
-                  <div class="eslot-body" id="eslot-armor">（空）</div>
-                </div>
+      <!-- EQUIP -->
+      <div class="bpanel" id="panel-equip">
+        <h2 class="panel-title">🎒 裝備與屬性</h2>
+        <div class="inv-layout">
+          <div class="equip-section">
+            <h3 class="inv-section-h">裝備欄</h3>
+            <div class="equip-slots">
+              <div class="equip-slot">
+                <div class="eslot-label">⚔️ 武器</div>
+                <div class="eslot-body" id="eslot-weapon">（空）</div>
               </div>
-              <div class="char-stats">
-                <div class="cstat"><span>⚔️ 攻擊力</span><b id="cstat-atk">—</b></div>
-                <div class="cstat"><span>🛡️ 防禦力</span><b id="cstat-def">—</b></div>
-                <div class="cstat"><span>❤️ 最大HP</span><b id="cstat-maxhp">—</b></div>
-                <div class="cstat"><span>📊 等級</span><b id="cstat-level">—</b></div>
+              <div class="equip-slot">
+                <div class="eslot-label">🛡️ 防具</div>
+                <div class="eslot-body" id="eslot-armor">（空）</div>
               </div>
             </div>
-            <div class="bag-section">
-              <h3 class="inv-section-h">背包武器 <span class="bag-count" id="bag-count">(0)</span></h3>
-              <div class="bag-grid" id="bag-grid"></div>
+            <div class="char-stats">
+              <div class="cstat"><span>⚔️ 攻擊力</span><b id="cstat-atk">—</b></div>
+              <div class="cstat"><span>🛡️ 防禦力</span><b id="cstat-def">—</b></div>
+              <div class="cstat"><span>❤️ 最大HP</span><b id="cstat-maxhp">—</b></div>
+              <div class="cstat"><span>📊 等級</span><b id="cstat-level">—</b></div>
             </div>
           </div>
+          <div class="bag-section">
+            <h3 class="inv-section-h">背包武器 <span class="bag-count" id="bag-count">(0)</span></h3>
+            <div class="bag-grid" id="bag-grid"></div>
+          </div>
         </div>
+      </div>
 
-      </main>
     </div>
   </section>
 
-  <!-- ═══════════════════ DUNGEON SCREEN ═══════════════════ -->
+  <!-- ═══════════════════ 地下城畫面 ═══════════════════ -->
   <section class="screen" id="screen-dungeon">
     <div class="dungeon-layout">
 
@@ -263,7 +248,7 @@
           <div class="combat-log" id="combat-log"></div>
         </div>
         <div class="combat-actions">
-          <div class="actions-label">快捷道具（點擊使用）</div>
+          <div class="actions-label">快捷道具</div>
           <div class="hotbar" id="hotbar"></div>
           <button class="btn-flee" id="btn-flee">🏃 撤退離開</button>
         </div>
@@ -271,6 +256,22 @@
 
     </div>
   </section>
+
+  <!-- ═══ BOTTOM NAV ═══ -->
+  <nav id="bottom-nav">
+    <button class="bnav-btn active" id="bnav-focus">
+      <span class="bnav-icon">⏱</span>
+      <span class="bnav-label">採集</span>
+    </button>
+    <button class="bnav-btn" id="bnav-bag">
+      <span class="bnav-icon">🎒</span>
+      <span class="bnav-label">包包</span>
+    </button>
+    <button class="bnav-btn" id="bnav-dungeon">
+      <span class="bnav-icon">⚔️</span>
+      <span class="bnav-label">地下城</span>
+    </button>
+  </nav>
 
   <!-- ═══ MODAL ═══ -->
   <div id="modal" class="modal-overlay hidden">
@@ -284,7 +285,7 @@
   <div id="toast" class="toast hidden"></div>
 
   <!-- ═══ VERSION ═══ -->
-  <div id="version-badge">v1.5</div>
+  <div id="version-badge">v1.6</div>
 </div>
 <script src="script.js"></script>
 </body>
