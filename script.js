@@ -140,8 +140,8 @@ function dmgFloat(txt, x, y, color) {
 // ═══════════════════════════════════════════════════════════
 
 function initParticles() {
-  const c = $('particles');
-  // Warm ember colors matching the amber/fire palette
+  const c = $('sparkles');
+  if (!c) return;
   const colors = ['#e8891a','#f5aa30','#c84020','#ff9940','#ffd060'];
   for (let i = 0; i < 22; i++) {
     const p = document.createElement('div');
@@ -168,10 +168,10 @@ function initParticles() {
 function setPhase(p) {
   GS.phase = p;
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.phase-pill').forEach(d => d.classList.remove('active'));
+  document.querySelectorAll('.bnav-btn').forEach(b => b.classList.remove('active'));
 
-  const screenMap = { focus:'screen-focus', village:'screen-village', dungeon:'screen-dungeon' };
-  const navMap    = { focus:'pnav-focus',   village:'pnav-village',   dungeon:'pnav-dungeon'   };
+  const screenMap = { focus:'screen-focus', village:'screen-bag', dungeon:'screen-dungeon' };
+  const navMap    = { focus:'bnav-focus',   village:'bnav-bag',   dungeon:'bnav-dungeon'   };
 
   $(screenMap[p]).classList.add('active');
   $(navMap[p]).classList.add('active');
@@ -566,19 +566,18 @@ function equipWeapon(id) {
   renderInventory();
 }
 
-/* ── VILLAGE TABS ── */
+/* ── BAG TABS ── */
 function initVillageTabs() {
-  document.querySelectorAll('.vnav[data-panel]').forEach(tab => {
+  document.querySelectorAll('.btab[data-panel]').forEach(tab => {
     tab.onclick = () => {
-      document.querySelectorAll('.vnav[data-panel]').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.vpanel').forEach(v => v.classList.remove('active'));
+      document.querySelectorAll('.btab[data-panel]').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.bpanel').forEach(v => v.classList.remove('active'));
       tab.classList.add('active');
       $('panel-' + tab.dataset.panel).classList.add('active');
       renderVillage();
     };
   });
   $('btn-go-dungeon').onclick = enterDungeon;
-  $('btn-go-focus').onclick   = () => setPhase('focus');
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -702,7 +701,7 @@ function monsterAttack() {
 function onMobDeath() {
   stopCombat();
   const mob = GS.dg.mob;
-  addLog('✨ 擊敗 ' + mob.name + '！獲得 ' + mob.exp + ' EXP', 'log-system');
+  addLog('✨ 擀敗 ' + mob.name + '！獲得 ' + mob.exp + ' EXP', 'log-system');
   addExp(mob.exp);
 
   // Loot drop
@@ -885,19 +884,24 @@ function initFlee() {
 //  INIT
 // ═══════════════════════════════════════════════════════════
 
+function initBottomNav() {
+  $('bnav-focus').onclick   = () => setPhase('focus');
+  $('bnav-bag').onclick     = () => setPhase('village');
+  $('bnav-dungeon').onclick = () => { if (GS.dg.on) setPhase('dungeon'); else toast('尚未進入地下城', 'err'); };
+}
+
 function init() {
   initParticles();
   initFocus();
   initVillageTabs();
+  initBottomNav();
   initFlee();
 
-  // Render village content so it's ready when user switches
   renderVillage();
-
   setPhase('focus');
   updateHeader();
 
-  setTimeout(() => toast('🎮 歡迎！開始計時採集資源，或直接前往村莊鍛造！', ''), 900);
+  setTimeout(() => toast('🎮 歡迎！開始計時採集資源，或前往包包鍛造！', ''), 900);
 }
 
 document.addEventListener('DOMContentLoaded', init);
